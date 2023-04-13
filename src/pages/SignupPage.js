@@ -43,17 +43,17 @@ function SignupPage(props) {
       })
   };
 
-  useEffect(() => {
-    axios.get(`${API_URL}/users/current`)
-      .then((response) => {
-        const userData = response.data;
-        // Set the initial state of the age input field to the user's age
-        setAge(userData.age);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios.get(`${API_URL}/users/current`)
+  //     .then((response) => {
+  //       const userData = response.data;
+  //       // Set the initial state of the age input field to the user's age
+  //       setAge(userData.age);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, []);
 
   return (
     <div className="SignupPage">
