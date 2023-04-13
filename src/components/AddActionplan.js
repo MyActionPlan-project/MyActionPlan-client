@@ -30,6 +30,8 @@ function AddActionplan(){
             setLocation("");
             setImage("");
 
+            // props.refreshActionplan()
+
 
         })
         .catch((error) => console.log(error));
