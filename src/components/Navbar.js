@@ -12,7 +12,6 @@ function Navbar(){
             <NavLink to="/login"> Login </NavLink>
             <NavLink to="/logout"> Logout </NavLink>
         </nav>
-
     )
 }
 
