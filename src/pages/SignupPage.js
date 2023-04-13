@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -43,17 +43,18 @@ function SignupPage(props) {
       })
   };
 
-  useEffect(() => {
-    axios.get(`${API_URL}/users/current`)
-      .then((response) => {
-        const userData = response.data;
-        // Set the initial state of the age input field to the user's age
-        setAge(userData.age);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(`${API_URL}/users/current`)
+  //     .then((response) => {
+  //       const userData = response.data;
+  //       // Set the initial state of the age input field to the user's age
+  //       setAge(userData.age);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, []);
 
   return (
     <div className="SignupPage">
@@ -80,8 +81,8 @@ function SignupPage(props) {
           </div>
 
           <div>
-            <label for="birthday">Age:
-              <input type="date" name="age" value={age} onChange={handleAge} />
+            <label htmlFor="birthday">Age:
+              <input type="date" id="birthday" name="age" value={age} onChange={handleAge} />
             </label>
           </div>
 
