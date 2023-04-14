@@ -10,7 +10,7 @@ function AddActionplan(props){
 
 
     const [title, setTitle] = useState('');
-    const [category, setCategory] = useState('');
+    const [category, setCategory] = useState('DIY');
     const [description, setDescription] = useState('');
     const [deadline, setDeadline] = useState('');
     const [location, setLocation] = useState('');
@@ -21,7 +21,7 @@ function AddActionplan(props){
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+        const formattedDeadline = new Date(deadline).toISOString();;
         const actionplanBody = {
             title,
             category,
@@ -59,7 +59,7 @@ function AddActionplan(props){
 
                 <div>
                     <label>Category</label>
-                    <select name="category" value={category} onChange={(e) => { setCategory(e.target.value) }} >
+                    <select name="category"  onChange={(e) => { setCategory(e.target.value) }} required>
                         <option value="DIY">DIY</option>
                         <option value="Vacation">Vacation</option>
                         <option value="Event">Event</option>

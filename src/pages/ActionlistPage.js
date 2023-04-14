@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import AddActionplan from "../components/AddActionplan";
+import { Link } from "react-router-dom";
 
 function Actionlist() {
   
@@ -28,11 +29,12 @@ useEffect(() => {
       <h1>Action Plans</h1>
       {actionplans ? (
         actionplans.map((actionplan) => {
-         
-
           return (
             <div key={actionplan._id}>
-              <h2>{actionplan.title}</h2>       
+            <h2>Title:{actionplan.title}</h2>
+              <Link to={`/actionplans/${actionplan._id}`}>
+                Details
+              </Link>
             </div>
           );
         })
