@@ -9,8 +9,9 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import AddStep from './components/AddStep';
 import AddActionplan from './components/AddActionplan';
-import ActionplanDetails from './pages/ActionplanDetails';
 import IsPrivate from './components/IsPrivate';
+import ActionplanDetails from './pages/ActionplanDetailsPage';
+import EditActionPlan from './pages/EditActionplanPage';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path='/addactionplan' element ={ <IsPrivate><AddActionplan /> </IsPrivate>} /> 
         <Route path='/addstep' element={ <AddStep />} />
         <Route path='/actionplans/:actionplanId' element={<ActionplanDetails />}/>
+        <Route path='/actionplans/edit/:actionplanId' element={<EditActionPlan />} />
       </Routes>
     <Footer/>
     </div>
