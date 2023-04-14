@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const API_URL = "http://localhost:5005";
 
@@ -15,6 +16,8 @@ function AddStep(props) {
     e.preventDefault();
 
     const { actionplanId } = props;
+
+    const navigate = useNavigate;
 
     const formattedDeadline = new Date(deadline).toISOString();
     const requestBody = { action, comment, deadline: formattedDeadline, location, status, actionplanId };
@@ -35,6 +38,7 @@ function AddStep(props) {
     setStatus("");
 
     props.refreshActionplan()
+    navigate('/actionplans')
    })
    .catch((error) => console.log(error));
   };

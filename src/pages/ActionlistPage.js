@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 function Actionlist() {
   const API_URL = "http://localhost:5005";
 
+  const storedToken = localStorage.getItem("authToken"); 
+
   const [actionplans, setActionplans] = useState(null);
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/api/actionplans`)
+      .get(`${API_URL}/api/actionplans`, { headers: { Authorization: `Bearer ${storedToken}`} } )
       .then((response) => setActionplans(response.data))
       .catch((error) => console.log(error));
   }, []);
