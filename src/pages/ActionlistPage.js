@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import AddActionplan from "../components/AddActionplan";
 
 function Actionlist() {
   
@@ -45,6 +46,10 @@ function Actionlist() {
         })
       ) 
       : ( <p>Loading...</p>)}
+      <div>
+        <h1>Add your actionplan here:</h1>
+        <AddActionplan />
+      </div>
     </div>
   );
 }

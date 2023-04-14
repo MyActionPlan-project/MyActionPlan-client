@@ -32,20 +32,21 @@ function AddActionplan(props){
             
         };
 
+        
+
         axios.post(`${API_URL}/api/actionplans`, actionplanBody, { headers: { Authorization: `Bearer ${storedToken}`} })
-            .then(() => {
-                setTitle('');
-                setCategory('');
-                setDescription('');
-                setDeadline('');
-                setLocation('');
-                setImage('');
-                
-                props.setRefreshActionplan();
-                navigate('/actionplans')
-            })
-            .catch((error) => console.log(error));
-    };  
+          .then(() => {
+            setTitle('');
+            setCategory('');
+            setDescription('');
+            setDeadline('');
+            setLocation('');
+            setImage('');
+            props.setRefreshActionplans();
+            navigate('/actionplans'); 
+          })
+          .catch((error) => console.log(error));
+            };  
 
     return(
         <div className="AddActionplan">
@@ -57,7 +58,7 @@ function AddActionplan(props){
 
                 <div>
                     <label>Category</label>
-                    <select name="category" value={category} onChange={(e) => { setCategory(e.target.value) }}>
+                    <select name="category" value={category} onChange={(e) => { setCategory(e.target.value) }} >
                         <option value="DIY">DIY</option>
                         <option value="Vacation">Vacation</option>
                         <option value="Event">Event</option>
