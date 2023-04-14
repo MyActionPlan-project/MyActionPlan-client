@@ -32,12 +32,13 @@ const {actionplanId} = useParams();
             
         
             <div key={details._id}>
+            {details.image && <img src={details.image} alt={details.title} />}
               <h2>Title:{details.title}</h2>
               <p>Category:{details.category}</p>
               <p>Description:{details.description}</p>
-              <p>Deadline: {details.deadline}</p>
+              <p>Deadline: {new Date(details.deadline).toLocaleDateString()}</p>
               <p>Location:{details.location}</p>
-              {details.image && <img src={details.image} alt={details.title} />}
+              
 
               <Link to={`/actionplans/edit/${actionplanId}`}>
                     <button> edit </button>
