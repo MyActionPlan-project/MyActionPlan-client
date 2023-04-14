@@ -21,12 +21,12 @@ function AddActionplan(props){
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const formattedDeadline = new Date(`${deadline}T00:00:00.000Z`).toISOString();
+        
         const actionplanBody = {
             title,
             category,
             description,
-            deadline: formattedDeadline,
+            deadline,
             location,
             image,
             
@@ -42,8 +42,9 @@ function AddActionplan(props){
             setDeadline('');
             setLocation('');
             setImage('');
-            props.setRefreshActionplans();
-            navigate('/actionplans'); 
+
+            props.refreshActionplans();
+             
           })
           .catch((error) => console.log(error));
             };  
