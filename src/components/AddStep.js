@@ -52,7 +52,7 @@ function AddStep(props) {
 
         <div>
           <label>Comments:</label>
-            <input type="text" name="comment" value={comment} onChange={(e) => setComment(e.target.value)} />
+            <input type="textarea" name="comment" value={comment} onChange={(e) => setComment(e.target.value)} />
         </div>
 
         <div>

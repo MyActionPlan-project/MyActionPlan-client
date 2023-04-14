@@ -7,6 +7,8 @@ import Footer from "./components/Footer";
 import ActionlistPage from './pages/ActionlistPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
+import AddStep from './components/AddStep';
+import AddActionplan from './components/AddActionplan';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path='/actionplans' element={<ActionlistPage />}/>
         <Route path='/login' element={ <LoginPage />} />
         <Route path='/signup' element={ <SignupPage />} />
+        <Route path='/addactionplan' element ={ <AddActionplan />} /> 
+        <Route path='/addstep' element={ <AddStep />} />
       </Routes>
     <Footer/>
     </div>
