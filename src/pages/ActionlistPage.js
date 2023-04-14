@@ -2,13 +2,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 function Actionlist() {
-  const API_URL = "http://localhost:5005";
+  
 
   const [actionplans, setActionplans] = useState(null);
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/api/actionplans`)
+      .get(`${process.env.REACT_APP_API_URL}/api/actionplans`)
       .then((response) => setActionplans(response.data))
       .catch((error) => console.log(error));
   }, []);
@@ -41,9 +41,8 @@ function Actionlist() {
             </div>
           );
         })
-      ) : (
-        <p>Loading...</p>
-      )}
+      ) 
+      : ( <p>Loading...</p>)}
     </div>
   );
 }
