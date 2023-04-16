@@ -42,7 +42,16 @@ function EditActionPlan(){
 
 const handleFormSubmit = (e) => {
   e.preventDefault();
-  const requestBody = { title, category, description, deadline, location, image }
+
+  let formattedDeadline;
+
+  if (deadline) {
+    formattedDeadline = new Date(deadline).toISOString();
+  } else {
+    formattedDeadline = null; 
+  }
+
+  const requestBody = { title, category, description, deadline: formattedDeadline, location, image }
 
   const storedToken = localStorage.getItem('authToken');  
 
