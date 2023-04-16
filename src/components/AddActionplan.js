@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 
 const API_URL = "http://localhost:5005";
 
@@ -17,16 +17,24 @@ function AddActionplan(props){
     const [image, setImage] = useState('');
     
 
-    const navigate = useNavigate();
+    
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const formattedDeadline = new Date(deadline).toISOString();;
+        
+        let formattedDeadline
+
+        if (deadline) {
+            formattedDeadline = new Date(deadline).toISOString();
+          } else {
+            formattedDeadline = null; 
+          }
+
         const actionplanBody = {
             title,
             category,
             description,
-            deadline,
+            deadline: formattedDeadline,
             location,
             image,
             
@@ -54,7 +62,7 @@ function AddActionplan(props){
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Title:</label>
-                    <input type="text" name="title" value={title} onChange={(e) => { setTitle(e.target.value) }} />
+                    <input type="text" name="title" value={title} onChange={(e) => { setTitle(e.target.value) }} required/>
                 </div>
 
                 <div>
@@ -75,7 +83,7 @@ function AddActionplan(props){
 
                 <div>
                     <label>Deadline:</label>
-                    <input type="date" name="deadline" value={deadline} onChange={(e) => { setDeadline(e.target.value) }} />
+                    <input type="date" name="deadline" value={deadline} onChange={(e) => { setDeadline(e.target.value) }} required/>
                 </div>
 
                 <div>
