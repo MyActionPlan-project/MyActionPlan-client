@@ -18,23 +18,33 @@ function Navbar(){
             
             <NavLink to="/"> Home </NavLink>
 
+            {isLoggedIn && user && (
+            <NavLink to={`/profile/${user._id}`}>Profile</NavLink>
+        )}
+
 
 
         {isLoggedIn && (
             <>
                 <NavLink to='/actionplans'>Actionplans</NavLink>
-                <NavLink to='/profile'>Profile</NavLink>
+
+                
+                
                 
                 <button onClick={logOutUser}>Logout</button>
                 
             </>
         )}
+
+       
             {!isLoggedIn && (
                 <>
                  <NavLink to="/signup"> Sign up </NavLink>
                  <NavLink to="/login"> Login </NavLink>
                 </>
                 )}
+
+    
             
             
         </nav>
