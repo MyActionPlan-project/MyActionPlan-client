@@ -47,7 +47,7 @@ const {actionplanId} = useParams();
               {details.steps.length > 0 && (
                 <ul>
                   {details.steps.map((step) => (
-                    <li key={step._id}>{step.title}</li>
+                    <li key={step._id}>{step.action}</li>
                   ))}
                 </ul>
               )}

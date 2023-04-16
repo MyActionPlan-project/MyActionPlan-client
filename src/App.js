@@ -13,6 +13,7 @@ import IsPrivate from './components/IsPrivate';
 import ActionplanDetails from './pages/ActionplanDetailsPage';
 import EditActionPlan from './pages/EditActionplanPage';
 import ProfilePage from './pages/ProfilePage';
+import StepDetails from './pages/StepDetails';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path='/addstep' element={ <AddStep />} />
         <Route path='/actionplans/:actionplanId' element={<ActionplanDetails />}/>
         <Route path='/actionplans/edit/:actionplanId' element={<EditActionPlan />} />
+        <Route path='/actionplans/:actionplanId/:stepId' element={<StepDetails />}/>
         <Route path='/profile/:Id' element={<IsPrivate> <ProfilePage /></IsPrivate>} />
       </Routes>
     <Footer/>
