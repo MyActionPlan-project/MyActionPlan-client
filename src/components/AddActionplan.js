@@ -7,6 +7,7 @@ const API_URL = "http://localhost:5005";
 function AddActionplan(props){
 
   const storedToken = localStorage.getItem("authToken"); 
+  const [errorMessage, setErrorMessage] = useState(undefined)
 
 
     const [title, setTitle] = useState('');
@@ -34,8 +35,13 @@ function AddActionplan(props){
 
         
 
-        axios.post(`${API_URL}/api/actionplans`, actionplanBody, { headers: { Authorization: `Bearer ${storedToken}`} })
-          .then(() => {
+        axios.post(`${API_URL}/api/actionplans`, actionplanBody, { headers: { Authorization: `Bearer ${storedToken}`}  })
+          .then((response ) => {
+            if (response.data.name === "ValidationError"){
+               
+            }
+
+                
             setTitle('');
             setCategory('');
             setDescription('');
@@ -43,10 +49,16 @@ function AddActionplan(props){
             setLocation('');
             setImage('');
 
+
+
             props.refreshActionplans();
              
           })
-          .catch((error) => console.log(error));
+          .catch((error) => {
+            console.log(error)
+            //const errorDescription = error.response.data.message;
+            //setErrorMessage(errorDescription);
+          })
             };  
 
     return(
@@ -89,6 +101,7 @@ function AddActionplan(props){
                 </div>
 
                 <button type="submit">Create</button>
+                { errorMessage && <p className="error-message">{errorMessage}</p> }
             </form>
         </div>
     );
