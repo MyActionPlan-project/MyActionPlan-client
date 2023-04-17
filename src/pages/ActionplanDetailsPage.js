@@ -1,12 +1,13 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
+import AddStep from "../components/AddStep";
 
 
 
 function ActionplanDetails(){
 
-const storedToken = localStorage.getItem("authToken");
+
 const [details, setDetails] = useState(null);
 
 const {actionplanId} = useParams();
@@ -14,7 +15,10 @@ const {actionplanId} = useParams();
 
  console.log(details)
  
- useEffect(() => {
+ const getAllSteps = ()=> {
+ const storedToken = localStorage.getItem("authToken");
+
+ 
     axios
       .get(`${process.env.REACT_APP_API_URL}/api/actionplans/${actionplanId}`, { headers: { Authorization: `Bearer ${storedToken}`}})
       .then((detailsFromDB) => {
@@ -22,9 +26,11 @@ const {actionplanId} = useParams();
         setDetails(detailsFromDB.data);
       })
       .catch((error) => console.log(error));
-  }, []);
+    }
 
-  
+  useEffect(() => { 
+    getAllSteps()
+   }, []);
 
   return (
     <div>
@@ -35,7 +41,7 @@ const {actionplanId} = useParams();
         
             <div key={details._id}>
             {details.image && <img src={details.image} alt={details.title} />}
-              <h2>Title:{details.title}</h2>
+              <h2>{details.title}</h2>
               <p>Category:{details.category}</p>
               <p>Description:{details.description}</p>
               <p>Deadline: {new Date(details.deadline).toLocaleDateString()}</p>
@@ -50,11 +56,12 @@ const {actionplanId} = useParams();
                 <ul>
                   {details.steps.map((step) => (
                     <>
-                    <Link to={`/actionplans/${actionplanId}/${step._id}`} key={step._id}> {step.action}</Link> 
+                    <p key={step._id}> {step.action} </p>
                     {step.comment && <p> {step.comment}</p> }
                     {step.deadline && <p> {step.deadline}</p>}
                     {step.location && <p> {step.location}</p>}
                     <p> {step.status} </p>
+                    <Link to={`/actionplans/${actionplanId}/${step._id}`}> Edit </Link> 
                     <hr />
                     </>
                   ))}
@@ -63,10 +70,10 @@ const {actionplanId} = useParams();
             </div>
        : 
       (<p>Loading...</p>)}
-      {/* <div>
-        <h1>Add your actionplan here:</h1>
-        <AddActionplan refreshActionplans={getAllActionplans}/>
-      </div> */}
+      <div>
+        <h1>Add your step here:</h1>
+        <AddStep refreshSteps={getAllSteps}/>
+      </div>
       
       
     </div>

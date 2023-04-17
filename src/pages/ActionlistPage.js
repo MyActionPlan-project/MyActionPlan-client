@@ -31,7 +31,7 @@ useEffect(() => {
         actionplans.map((actionplan) => {
           return (
             <div key={actionplan._id}>
-            <h2>Title:{actionplan.title}</h2>
+            <h2>{actionplan.title}</h2>
               <Link to={`/actionplans/${actionplan._id}`}>
                 Details
               </Link>

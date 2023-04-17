@@ -90,7 +90,7 @@ function AddActionplan(props){
 
                 <div>
                     <label>Description:</label>
-                    <input type="textarea" name="description" value={description} onChange={(e) => { setDescription(e.target.value) }} />
+                    <input type="textarea" name="description" rows="3" cols="50" value={description}  onChange={(e) => { setDescription(e.target.value) }} />
                 </div>
 
                 <div>

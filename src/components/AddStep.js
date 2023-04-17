@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const API_URL = "http://localhost:5005";
 
@@ -11,11 +11,12 @@ function AddStep(props) {
   const [ location, setLocation ] = useState("");
   const [ status, setStatus ] = useState("");
 
+  const {actionplanId} = useParams()
   
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const { actionplanId } = props;
+    //const { actionplanId } = props;
 
     const navigate = useNavigate;
 
@@ -40,7 +41,7 @@ function AddStep(props) {
   
     
 
-  axios.post(`${API_URL}/api/steps`,
+  axios.post(`${API_URL}/api/actionplans/${actionplanId}`,
     requestBody,
     { headers: {Authorization: `Bearer ${storedToken}` } }
    )
@@ -51,8 +52,8 @@ function AddStep(props) {
     setLocation("");
     setStatus("");
 
-    props.refreshActionplan()
-    navigate('/actionplans')
+    props.refreshSteps()
+    
    })
    .catch((error) => console.log(error));
   };
