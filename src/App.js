@@ -14,7 +14,6 @@ import IsAnon from './components/IsAnon';
 import ActionplanDetails from './pages/ActionplanDetailsPage';
 import EditActionPlan from './pages/EditActionplanPage';
 import ProfilePage from './pages/ProfilePage';
-import StepDetails from './pages/StepDetails';
 import EditProfilePage from './pages/EditProfilePage';
 import StepUpdate from './pages/StepUpdate';
 
