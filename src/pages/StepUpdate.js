@@ -46,7 +46,7 @@ function StepUpdate(props) {
       .then((response) => {
         // Once the request is resolved successfully and the project
         // is updated we navigate back to the details page
-        navigate(`actionplans/${actionplanId}`)
+        navigate(`/actionplans/${actionplanId}`)
       })
       .catch((err) => console.log("updating", err));
   };
