@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 
 const API_URL = "http://localhost:5005";
 
@@ -17,8 +17,6 @@ function AddStep(props) {
     e.preventDefault();
 
     //const { actionplanId } = props;
-
-    const navigate = useNavigate;
 
     let formattedDeadline
 

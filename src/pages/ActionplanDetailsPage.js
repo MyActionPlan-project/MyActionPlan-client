@@ -56,11 +56,11 @@ const {actionplanId} = useParams();
                 <ul>
                   {details.steps.map((step) => (
                     <>
-                    <p key={step._id}> {step.action} </p>
-                    {step.comment && <p> {step.comment}</p> }
-                    {step.deadline && <p> {step.deadline}</p>}
-                    {step.location && <p> {step.location}</p>}
-                    <p> {step.status} </p>
+                    <p key={step._id}>Action: {step.action} </p>
+                    {step.comment && <p>Comments: {step.comment}</p> }
+                    {step.deadline &&  <p>Deadline:{new Date(step.deadline).toLocaleDateString()}</p>}
+                    {step.location && <p>Location: {step.location}</p>}
+                    <p>Status: {step.status} </p>
                     <Link to={`/actionplans/${actionplanId}/${step._id}`}> Edit </Link> 
                     <hr />
                     </>
