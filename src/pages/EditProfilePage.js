@@ -14,6 +14,7 @@ function EditProfilePage() {
 
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
+  const { logOutUser } = useContext(AuthContext);
 
   const userId = user._id;
   console.log(user._id);
@@ -26,7 +27,7 @@ function EditProfilePage() {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        const userDetails = response.data;
+        const userDetails = response.data.user;
         console.log(userDetails)
         setName(userDetails.name);
         setEmail(userDetails.email);
@@ -57,10 +58,11 @@ function EditProfilePage() {
   const deleteUser = () => {
     const storedToken = localStorage.getItem("authToken");
     axios
-      .delete(`${API_URL}/api/profile${user._id}`, {
+      .delete(`${API_URL}/api/profile/${user._id}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then(() => {
+        logOutUser();
         navigate("/login");
       })
       .catch((error) => console.log(error));
