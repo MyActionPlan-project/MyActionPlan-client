@@ -1,11 +1,11 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AddActionplan from "../components/AddActionplan";
 import { Link } from "react-router-dom";
-
+import { AuthContext } from "../context/auth.context";
 function Actionlist() {
   
-
+  const { user } = useContext(AuthContext);
 
   const [actionplans, setActionplans] = useState(null);
 
@@ -29,6 +29,9 @@ useEffect(() => {
       <h1>Action Plans</h1>
       {actionplans ? (
         actionplans.map((actionplan) => {
+
+          const isOwner = actionplan.userId === user._id
+          if (isOwner){
           return (
             <div key={actionplan._id}>
             <h2>{actionplan.title}</h2>
@@ -36,7 +39,7 @@ useEffect(() => {
                 Details
               </Link>
             </div>
-          );
+          )};
         })
       ) 
       : ( <p>Loading...</p>)}
