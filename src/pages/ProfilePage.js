@@ -1,21 +1,29 @@
 import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { AuthContext } from '../context/auth.context';
 
-
 function ProfilePage() {
+  
   const [userData, setUserData] = useState(null);
-  const storedToken = localStorage.getItem("authToken");
-  
-  
-  const {user} = useContext(AuthContext)
 
+  const { user } = useContext(AuthContext);
+  
+
+  const { userId } = useParams( {userId: ''});
+  console.log(userId);
+
+  
 
   useEffect(() => {
-      
-      axios.get(`${process.env.REACT_APP_API_URL}/api/profile/${user._id}`, { headers: { Authorization: `Bearer ${storedToken}`},
-    })
+    const storedToken = localStorage.getItem("authToken");
+    
+        
+      axios.get(`${process.env.REACT_APP_API_URL}/api/profile/${user._id}`, {
+        headers: {
+          Authorization: `Bearer ${storedToken}`,
+        },
+      })
         .then((response) => {
           console.log(response.data)
           setUserData(response.data.user);
@@ -23,12 +31,16 @@ function ProfilePage() {
         .catch((error) => {
           console.log("this one?", error);
         });
+      
     
   }, [user._id]);
+
+
 
   return (
     <div>
       {userData ? (
+        
         <div>
           <h2>User Profile</h2>
           <p>Name: {userData.name}</p>
