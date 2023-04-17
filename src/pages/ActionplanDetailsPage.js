@@ -10,7 +10,9 @@ const storedToken = localStorage.getItem("authToken");
 const [details, setDetails] = useState(null);
 
 const {actionplanId} = useParams();
- console.log(actionplanId)
+
+
+ console.log(details)
  
  useEffect(() => {
     axios
@@ -47,7 +49,14 @@ const {actionplanId} = useParams();
               {details.steps.length > 0 && (
                 <ul>
                   {details.steps.map((step) => (
-                    <li key={step._id}>{step.action}</li>
+                    <>
+                    <Link to={`/actionplans/${actionplanId}/${step._id}`} key={step._id}> {step.action}</Link> 
+                    {step.comment && <p> {step.comment}</p> }
+                    {step.deadline && <p> {step.deadline}</p>}
+                    {step.location && <p> {step.location}</p>}
+                    <p> {step.status} </p>
+                    <hr />
+                    </>
                   ))}
                 </ul>
               )}
