@@ -63,7 +63,11 @@ const {actionplanId} = useParams();
             </div>
        : 
       (<p>Loading...</p>)}
-
+      {/* <div>
+        <h1>Add your actionplan here:</h1>
+        <AddActionplan refreshActionplans={getAllActionplans}/>
+      </div> */}
+      
       
     </div>
   );

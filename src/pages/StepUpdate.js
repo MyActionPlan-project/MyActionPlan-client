@@ -50,20 +50,21 @@ function StepUpdate(props) {
       })
       .catch((err) => console.log("updating", err));
   };
-    //const navigate = useNavigate()
-
-    // let formattedDeadline
-
-    //     if (deadline) {
-    //         formattedDeadline = new Date(deadline).toISOString();
-    //       } else {
-    //         formattedDeadline = null; 
-    //       }
-
+   
+  const deleteStep = () => {                   
+    
+    axios
+      .delete(`${process.env.REACT_APP_API_URL}/api/actionplans/${actionplanId}/${stepId}`)
+      .then(() => {
+        
+        navigate(`/actionplans/${actionplanId}`);
+      })
+      .catch((err) => console.log(err));
+  }; 
 
   return (
     <div className="stepUpdate">
-      <h3>Add New Step</h3>
+      <h3>Edit steps</h3>
       
       <form onSubmit={handleSubmit}>
 
@@ -99,7 +100,9 @@ function StepUpdate(props) {
 
         
         <button type="Submit">edit</button>
+        
       </form>
+      <button onClick={deleteStep}>Delete this step</button>
     </div>
   )
 
