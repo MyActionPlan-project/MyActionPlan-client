@@ -30,7 +30,6 @@ function App() {
         <Route path='/actionplans/:actionplanId' element={<ActionplanDetails />}/>
         <Route path='/actionplans/edit/:actionplanId' element={<EditActionPlan />} />
         <Route path='/actionplans/:actionplanId/:stepId' element={<StepDetails />}/>
-        <Route path='/profile/:Id' element={<IsPrivate> <ProfilePage /></IsPrivate>} />
         <Route path='/profile/:userId' element={<IsPrivate> <ProfilePage /></IsPrivate>} />
         <Route path='/profile/edit-profile' element={<IsPrivate> <EditProfilePage /></IsPrivate>} />
       </Routes>

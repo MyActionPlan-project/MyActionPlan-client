@@ -20,7 +20,7 @@ function SignupPage(props) {
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
   const handleName = (e) => setName(e.target.value);
-  const handleAge = (e) => setAge(e.target.value);
+  const handleAge = (e) => setAge(parseInt(e.target.value));
   const handleTelephoneNumber = (e) => setTelephoneNumber(e.target.value);
   const handleCity = (e) => setCity(e.target.value);
 
@@ -43,18 +43,6 @@ function SignupPage(props) {
       })
   };
 
-  // useEffect(() => {
-  //   axios
-  //     .get(`${API_URL}/users/current`)
-  //     .then((response) => {
-  //       const userData = response.data;
-  //       // Set the initial state of the age input field to the user's age
-  //       setAge(userData.age);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }, []);
 
   return (
     <div className="SignupPage">
@@ -76,13 +64,13 @@ function SignupPage(props) {
 
           <div>
             <label>Name:
-              <input type="text" name="name" value={name} onChange={handleName} />
+              <input type="text" name="name"  value={name} onChange={handleName} />
             </label>
           </div>
 
           <div>
-            <label htmlFor="birthday">Age:
-              <input type="date" id="birthday" name="age" value={age} onChange={handleAge} />
+            <label>Age:
+              <input type="number" name="age" min="1" max="100" value={age} onChange={handleAge} />
             </label>
           </div>
 
