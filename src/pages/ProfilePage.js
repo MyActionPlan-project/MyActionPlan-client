@@ -29,7 +29,7 @@ function ProfilePage() {
           setUserData(response.data.user);
         })
         .catch((error) => {
-          console.log(error);
+          console.log("this one?", error);
         });
       
     

@@ -15,6 +15,7 @@ import EditActionPlan from './pages/EditActionplanPage';
 import ProfilePage from './pages/ProfilePage';
 import StepDetails from './pages/StepDetails';
 import EditProfilePage from './pages/EditProfilePage';
+import StepUpdate from './pages/StepUpdate';
 
 function App() {
   return (
@@ -29,7 +30,8 @@ function App() {
         <Route path='/addstep' element={ <AddStep />} />
         <Route path='/actionplans/:actionplanId' element={<ActionplanDetails />}/>
         <Route path='/actionplans/edit/:actionplanId' element={<EditActionPlan />} />
-        <Route path='/actionplans/:actionplanId/:stepId' element={<StepDetails />}/>
+        <Route path='/actionplans/:actionplanId/:stepId' element={<StepUpdate />}/>
+      
         <Route path='/profile/:userId' element={<IsPrivate> <ProfilePage /></IsPrivate>} />
         <Route path='/edit-profile/:userId' element={<IsPrivate> <EditProfilePage /></IsPrivate>} />
       </Routes>
