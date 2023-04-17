@@ -9,7 +9,7 @@ function SignupPage(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [age, setAge] = useState("");
+  const [age, setAge] = useState(1);
   const [telephoneNumber, setTelephoneNumber] = useState("");
   const [city, setCity] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
@@ -70,7 +70,7 @@ function SignupPage(props) {
 
           <div>
             <label>Age:
-              <input type="number" name="age" min="1" max="100" value={age} onChange={handleAge} />
+              <input type="number" name="age" value={age} min="1" max="110" onChange={handleAge} />
             </label>
           </div>
 

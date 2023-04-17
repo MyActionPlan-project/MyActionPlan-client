@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { AuthContext } from "../context/auth.context";
 
 
 const API_URL = "http://localhost:5005";
-
-function EditProfilePage(){
+function EditProfilePage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [age, setAge] = useState("");
@@ -13,63 +13,60 @@ function EditProfilePage(){
   const [city, setCity] = useState("");
 
   const navigate = useNavigate();
-  const { userId } = useParams();
+  const { user } = useContext(AuthContext);
 
-
+  const userId = user._id;
+  console.log(user._id);
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("authToken"); 
+    const storedToken = localStorage.getItem("authToken");
 
-    axios.get(`${API_URL}/api/profile/${userId}`,
-    { headers: { Authorization: `Bearer ${storedToken}` } }   
-  )
-    .then((response) => {
-      const userData = response.data;
-      setName(userData.name);
-      setEmail(userData.email);
-      setAge(userData.age);
-      setTelephoneNumber(userData.telephoneNumber);
-      setCity(userData.city);
-    })
-    .catch((error) => console.log(error));
+    axios
+      .get(`${API_URL}/api/profile/${userId}`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => {
+        const userDetails = response.data;
+        console.log(userDetails)
+        setName(userDetails.name);
+        setEmail(userDetails.email);
+        setAge(userDetails.age);
+        setTelephoneNumber(userDetails.telephoneNumber);
+        setCity(userDetails.city);
+      })
+      .catch((error) => console.log(error));
   }, [userId]);
-
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    const requestBody = {
-      name,
-      email,
-      age,
-      telephoneNumber,
-      city
-    }
+    const requestBody = { name, email, age, telephoneNumber, city };
 
-    const storedToken = localStorage.getItem('authToken'); 
+    const storedToken = localStorage.getItem("authToken");
 
     axios
-        .put(
-          `${API_URL}/api/users/${userId}`,
-          requestBody,
-          { headers: { Authorization: `Bearer ${storedToken}` } }              
-        )
-        .then((response) => {
-          navigate(`/profile/${userId}`)
-        });
-  }
+      .put(`${API_URL}/api/profile/${userId}`, requestBody, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => {
+        navigate(`/profile/${user._id}`);
+      })
+      .catch((error) => console.log(error));
+  };
 
   const deleteUser = () => {
     const storedToken = localStorage.getItem("authToken");
     axios
-      .delete(`${API_URL}/api/profile/${userId}`, {
+      .delete(`${API_URL}/api/profile${user._id}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then(() => {
-        navigate("/users");
+        navigate("/login");
       })
-      .catch((err) => console.log(err));
+      .catch((error) => console.log(error));
   };
+
+
 
   return ( 
     <div className="EditProfilePage">
@@ -89,7 +86,7 @@ function EditProfilePage(){
 
         <div>
           <label>Age:</label>
-            <input type="date" name="age" value={age} onChange={(e) => setAge(e.target.value)} />
+            <input type="number" name="age" value={age} min="1" max="110" onChange={(e) => setAge(e.target.value)} />
         </div>
 
         <div>

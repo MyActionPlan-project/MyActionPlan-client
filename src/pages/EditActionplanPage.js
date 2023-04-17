@@ -80,7 +80,7 @@ const handleFormSubmit = (e) => {
   }; 
     
   return (
-    <div className="EdidActionplanPage">
+    <div className="EditActionplanPage">
       <h2>Edit your actionplan</h2>
 
       <form onSubmit={handleFormSubmit}>

@@ -48,7 +48,7 @@ function ProfilePage() {
           <p>Age: {userData.age}</p>
           <p>Telephone Number: {userData.telephoneNumber}</p>
           <p>City: {userData.city}</p>
-          <Link to={`/edit-profile/${userData.id}`}>Edit Profile</Link>
+          <Link to={`/edit-profile/${userData._id}`}>Edit Profile</Link>
         </div>
       ) : (
         <p>Loading...</p>
