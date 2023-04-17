@@ -16,7 +16,7 @@ function EditProfilePage() {
   const { user } = useContext(AuthContext);
 
   const userId = user._id;
-  console.log(user._id);
+ 
 
   useEffect(() => {
     const storedToken = localStorage.getItem("authToken");
@@ -26,7 +26,7 @@ function EditProfilePage() {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        const userDetails = response.data;
+        const userDetails = response.data.user;
         console.log(userDetails)
         setName(userDetails.name);
         setEmail(userDetails.email);
