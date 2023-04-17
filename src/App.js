@@ -10,6 +10,7 @@ import SignupPage from './pages/SignupPage';
 import AddStep from './components/AddStep';
 import AddActionplan from './components/AddActionplan';
 import IsPrivate from './components/IsPrivate';
+import IsAnon from './components/IsAnon';
 import ActionplanDetails from './pages/ActionplanDetailsPage';
 import EditActionPlan from './pages/EditActionplanPage';
 import ProfilePage from './pages/ProfilePage';
@@ -24,14 +25,13 @@ function App() {
       <Routes>
         <Route path='/' element={ <HomePage />} />
         <Route path='/actionplans' element={<IsPrivate><ActionlistPage /> </IsPrivate>}/>
-        <Route path='/login' element={ <LoginPage />} />
-        <Route path='/signup' element={ <SignupPage />} />
+        <Route path='/login' element={<IsAnon> <LoginPage /> </IsAnon>} />
+        <Route path='/signup' element={<IsAnon><SignupPage /></IsAnon> } />
         <Route path='/addactionplan' element ={ <IsPrivate><AddActionplan /> </IsPrivate>} /> 
-        <Route path='/addstep' element={ <AddStep />} />
-        <Route path='/actionplans/:actionplanId' element={<ActionplanDetails />}/>
-        <Route path='/actionplans/edit/:actionplanId' element={<EditActionPlan />} />
-        <Route path='/actionplans/:actionplanId/:stepId' element={<StepUpdate />}/>
-      
+        <Route path='/addstep' element={<IsPrivate> <AddStep /></IsPrivate>} />
+        <Route path='/actionplans/:actionplanId' element={<IsPrivate><ActionplanDetails /></IsPrivate>}/>
+        <Route path='/actionplans/edit/:actionplanId' element={<IsPrivate><EditActionPlan /></IsPrivate>} />
+        <Route path='/actionplans/:actionplanId/:stepId' element={<IsPrivate><StepUpdate /></IsPrivate>}/>    
         <Route path='/profile/:userId' element={<IsPrivate> <ProfilePage /></IsPrivate>} />
         <Route path='/edit-profile/:userId' element={<IsPrivate> <EditProfilePage /></IsPrivate>} />
       </Routes>
