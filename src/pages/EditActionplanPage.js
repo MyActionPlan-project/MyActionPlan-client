@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 
-const API_URL = "http://localhost:5005";
+
 
 function EditActionPlan(){
   const [title, setTitle] = useState('');
@@ -22,7 +22,7 @@ function EditActionPlan(){
 
    axios
    .get(
-     `${API_URL}/api/actionplans/${actionplanId}`,
+     `${process.env.REACT_APP_API_URL}/api/actionplans/${actionplanId}`,
      { headers: { Authorization: `Bearer ${storedToken}` } }   
    )
    .then((response) => {
@@ -57,7 +57,7 @@ const handleFormSubmit = (e) => {
 
   axios
       .put(
-        `${API_URL}/api/actionplans/${actionplanId}`,
+        `${process.env.REACT_APP_API_URLL}/api/actionplans/${actionplanId}`,
         requestBody,
         { headers: { Authorization: `Bearer ${storedToken}` } }              
       )
@@ -72,7 +72,7 @@ const handleFormSubmit = (e) => {
 
       axios
       .delete(
-        `${API_URL}/api/actionplans/${actionplanId}`,
+        `${process.env.REACT_APP_API_URL}/api/actionplans/${actionplanId}`,
         { headers: { Authorization: `Bearer ${storedToken}` } }           
       )
       .then(() => navigate("/actionplans"))

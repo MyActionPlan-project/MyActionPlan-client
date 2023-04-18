@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 
 
-const API_URL = "http://localhost:5005";
+
 
 function AddActionplan(props){
 
@@ -43,7 +43,7 @@ function AddActionplan(props){
 
         
 
-        axios.post(`${API_URL}/api/actionplans`, actionplanBody, { headers: { Authorization: `Bearer ${storedToken}`}  })
+        axios.post(`${process.env.REACT_APP_API_URL}/api/actionplans`, actionplanBody, { headers: { Authorization: `Bearer ${storedToken}`}  })
           .then((response ) => {
             if (response.data.name === "ValidationError"){
                

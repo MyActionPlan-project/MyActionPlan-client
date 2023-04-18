@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import {  useParams } from "react-router-dom";
 
-const API_URL = "http://localhost:5005";
+
 
 function AddStep(props) {
   const [ action, setAction ] = useState("");
@@ -39,7 +39,7 @@ function AddStep(props) {
   
     
 
-  axios.post(`${API_URL}/api/actionplans/${actionplanId}`,
+  axios.post(`${process.env.REACT_APP_API_URL}/api/actionplans/${actionplanId}`,
     requestBody,
     { headers: {Authorization: `Bearer ${storedToken}` } }
    )

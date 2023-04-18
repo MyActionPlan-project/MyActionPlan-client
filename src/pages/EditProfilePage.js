@@ -4,7 +4,7 @@ import axios from "axios";
 import { AuthContext } from "../context/auth.context";
 
 
-const API_URL = "http://localhost:5005";
+
 function EditProfilePage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -23,7 +23,7 @@ function EditProfilePage() {
     const storedToken = localStorage.getItem("authToken");
 
     axios
-      .get(`${API_URL}/api/profile/${userId}`, {
+      .get(`${process.env.REACT_APP_API_URL}/api/profile/${userId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
@@ -46,7 +46,7 @@ function EditProfilePage() {
     const storedToken = localStorage.getItem("authToken");
 
     axios
-      .put(`${API_URL}/api/profile/${userId}`, requestBody, {
+      .put(`${process.env.REACT_APP_API_URL}/api/profile/${userId}`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
@@ -58,7 +58,7 @@ function EditProfilePage() {
   const deleteUser = () => {
     const storedToken = localStorage.getItem("authToken");
     axios
-      .delete(`${API_URL}/api/profile/${user._id}`, {
+      .delete(`${process.env.REACT_APP_API_URL}/api/profile/${user._id}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then(() => {
