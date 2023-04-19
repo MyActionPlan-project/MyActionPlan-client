@@ -1,15 +1,34 @@
+import "./Footer.css";
+import { Navbar } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-import "./Footer.css"
-
-function Footer(){
-
-    return(
-        <div className="footer" >
-            
-            <p className="footer">"Need a nudge to get off the couch? Our to-do list site will guilt-trip you into productivity, because who needs Netflix when you can conquer the world, one task at a time!"</p>
-            <p className="footer">Application created in 2023 by SotDok, 8lom </p>        
-        </div> 
-    )
+function Footer() {
+  return (
+    <Navbar fixed="bottom" bg="#3C6255" className="justify-content-center w-100">
+      <div className="footer">
+        <p className="footer-text">
+          <Link to="https://github.com/SotDok" target="_blank">
+            <img
+              src="/GitHub-Mark.png"
+              alt="GitHub icon"
+              className="github-icon"
+            />
+            <span className="gitname">SotDok</span>
+          </Link>
+          &nbsp;|&nbsp;
+          <Link to="https://github.com/8lom" target="_blank">
+            <img
+              src="/GitHub-Mark.png"
+              alt="GitHub icon"
+              className="github-icon"
+            />
+             <span className="gitname">8lom</span>
+          </Link>
+        </p>
+        <p className="footer-text">Application created in 2023 by SotDok, 8lom</p>
+      </div>
+    </Navbar>
+  );
 }
 
 export default Footer;

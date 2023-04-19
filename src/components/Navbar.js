@@ -1,54 +1,60 @@
 import { useContext } from "react";
-import {NavLink} from "react-router-dom"
+import { NavLink } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
+import Nav from "react-bootstrap/Nav";
+import "./Navbar.css";
 
 
-function Navbar(){
+function Navbar() {
+  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
-    const {
-        isLoggedIn,
-        user,
-        logOutUser
-    } = useContext(AuthContext);
-    
-    return(
-        <nav>
-        <h2> Hello {user && user.name} </h2>
-        
-            
-            <NavLink to="/"> Home </NavLink>
+  return (
+    <Nav className="custom-navbar" justify variant="tabs" defaultActiveKey="/">
+    <Nav.Item>
+      <Nav.Link as={NavLink} to="/" exact>
+        Home
+      </Nav.Link>
+    </Nav.Item>
 
-            {isLoggedIn && user && (
-            <NavLink to={`/profile/${user._id}`}>Profile</NavLink>
-        )}
+    {isLoggedIn && user && (
+      <Nav.Item>
+        <Nav.Link as={NavLink} to={`/profile/${user._id}`} exact>{user.name.toUpperCase()}'s
+          Profile
+        </Nav.Link>
+      </Nav.Item>
+    )}
 
+    {isLoggedIn && (
+      <>
+        <Nav.Item>
+          <Nav.Link as={NavLink} to="/actionplans" exact>
+            Actionplans
+          </Nav.Link>
+        </Nav.Item>
 
+        <Nav.Item>
+            <Nav.Link onClick={logOutUser}>Logout</Nav.Link>
+        </Nav.Item>
+      </>
+    )}
 
-        {isLoggedIn && (
-            <>
-                <NavLink to='/actionplans'>Actionplans</NavLink>
+    {!isLoggedIn && (
+      <>
+        <Nav.Item>
+          <Nav.Link as={NavLink} to="/signup" exact>
+            Sign up
+          </Nav.Link>
+        </Nav.Item>
 
-                
-                
-                
-                <button onClick={logOutUser}>Logout</button>
-                
-            </>
-        )}
-
-       
-            {!isLoggedIn && (
-                <>
-                 <NavLink to="/signup"> Sign up </NavLink>
-                 <NavLink to="/login"> Login </NavLink>
-                </>
-                )}
-
-    
-            
-            
-        </nav>
-    )
+        <Nav.Item>
+          <Nav.Link as={NavLink} to="/login" exact>
+            Login
+          </Nav.Link>
+        </Nav.Item>
+      </>
+    )}
+  </Nav>
+  );
 }
 
 export default Navbar;

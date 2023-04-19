@@ -2,6 +2,8 @@ import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { AuthContext } from '../context/auth.context';
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import './ProfilePage.css';
 
 function ProfilePage() {
   
@@ -38,22 +40,29 @@ function ProfilePage() {
 
 
   return (
-    <div>
+    <Container className="profilecontainer mt-5">
       {userData ? (
-        
-        <div>
-          <h2>User Profile</h2>
-          <p>Name: {userData.name}</p>
-          <p>Email: {userData.email}</p>
-          <p>Age: {userData.age}</p>
-          <p>Telephone Number: {userData.telephoneNumber}</p>
-          <p>City: {userData.city}</p>
-          <Link to={`/edit-profile/${userData._id}`}>Edit Profile</Link>
-        </div>
+        <Row className="justify-content-center mt-4">
+          <Col md={6}>
+            <Card>
+              <Card.Body>
+                <Card.Title className="text-center">Your Profile</Card.Title>
+                <Card.Text className='profile-text-card m-5'>
+                  <p><strong>Name:</strong> {userData.name}</p>
+                  <p><strong>Email:</strong> {userData.email}</p>
+                  <p><strong>Age:</strong> {userData.age}</p>
+                  <p><strong>Telephone Number:</strong> {userData.telephoneNumber}</p>
+                  <p><strong>City:</strong> {userData.city}</p>
+                </Card.Text>
+                <Button as={Link} to={`/edit-profile/${userData._id}`} className="mt-3 d-flex justify-content-center editbtn" >Edit Profile</Button>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
       ) : (
         <p>Loading...</p>
       )}
-    </div>
+    </Container>
   );
 }
 

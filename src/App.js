@@ -16,6 +16,8 @@ import EditActionPlan from './pages/EditActionplanPage';
 import ProfilePage from './pages/ProfilePage';
 import EditProfilePage from './pages/EditProfilePage';
 import StepUpdate from './pages/StepUpdate';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   return (
