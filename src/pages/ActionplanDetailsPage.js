@@ -40,7 +40,7 @@ const {actionplanId} = useParams();
             
         
             <div key={details._id}>
-            {details.image && <img src={details.image} alt={details.title} />}
+            
               <h2>{details.title}</h2>
               <p>Category:{details.category}</p>
               <p>Description:{details.description}</p>
