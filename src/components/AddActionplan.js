@@ -1,118 +1,152 @@
 import axios from "axios";
 import { useState } from "react";
+import { Form, Button, Container, Col, Row } from "react-bootstrap";
 
+function AddActionplan(props) {
+  const storedToken = localStorage.getItem("authToken");
+  const [errorMessage, setErrorMessage] = useState(undefined);
 
+  const [title, setTitle] = useState("");
+  const [category, setCategory] = useState("DIY");
+  const [description, setDescription] = useState("");
+  const [deadline, setDeadline] = useState("");
+  const [location, setLocation] = useState("");
+  const [image, setImage] = useState("");
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-function AddActionplan(props){
+    let formattedDeadline;
 
-  const storedToken = localStorage.getItem("authToken"); 
-  const [errorMessage, setErrorMessage] = useState(undefined)
+    if (deadline) {
+      formattedDeadline = new Date(deadline).toISOString();
+    } else {
+      formattedDeadline = null;
+    }
 
+    const actionplanBody = {
+      title,
+      category,
+      description,
+      deadline: formattedDeadline,
+      location,
+      image,
+    };
 
-    const [title, setTitle] = useState('');
-    const [category, setCategory] = useState('DIY');
-    const [description, setDescription] = useState('');
-    const [deadline, setDeadline] = useState('');
-    const [location, setLocation] = useState('');
-    const [image, setImage] = useState('');
-    
+    axios
+      .post(
+        `${process.env.REACT_APP_API_URL}/api/actionplans`,
+        actionplanBody,
+        { headers: { Authorization: `Bearer ${storedToken}` } }
+      )
+      .then((response) => {
+        if (response.data.name === "ValidationError") {
+        }
 
-    
+        setTitle("");
+        setCategory("");
+        setDescription("");
+        setDeadline("");
+        setLocation("");
+        setImage("");
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        
-        let formattedDeadline
+        props.refreshActionplans();
+      })
+      .catch((error) => {
+        console.log(error);
+        //const errorDescription = error.response.data.message;
+        //setErrorMessage(errorDescription);
+      });
+  };
 
-        if (deadline) {
-            formattedDeadline = new Date(deadline).toISOString();
-          } else {
-            formattedDeadline = null; 
-          }
+  return (
+    <Container className="AddActionplan">
+      <Row className="justify-content-center">
+        <Col sm={8} md={6} lg={4}>
+          <h1 className="text-center mb-1 mt-1">Add your actionplan here:</h1>
 
-        const actionplanBody = {
-            title,
-            category,
-            description,
-            deadline: formattedDeadline,
-            location,
-            image,
-            
-        };
+          <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="formBasicTitle">
+              <Form.Label className="loginsteps mt-1">
+                <strong>Title</strong>
+              </Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                required
+              />
+            </Form.Group>
 
-        
+            <Form.Group controlId="formBasicCategory">
+              <Form.Label className="loginsteps mt-1">
+                <strong>Category</strong>
+              </Form.Label>
+              <Form.Control
+                as="select"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                required
+              >
+                <option value="" selected disabled>
+                  Select Category
+                </option>
+                <option value="DIY">DIY</option>
+                <option value="Vacation">Vacation</option>
+                <option value="Event">Event</option>
+                <option value="Training">Training</option>
+                <option value="Other">Other</option>
+              </Form.Control>
+            </Form.Group>
 
-        axios.post(`${process.env.REACT_APP_API_URL}/api/actionplans`, actionplanBody, { headers: { Authorization: `Bearer ${storedToken}`}  })
-          .then((response ) => {
-            if (response.data.name === "ValidationError"){
-               
-            }
+            <Form.Group controlId="formBasicDescription">
+              <Form.Label className="loginsteps mt-1">
+                <strong>Description</strong>
+              </Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                placeholder="Enter description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </Form.Group>
 
-                
-            setTitle('');
-            setCategory('');
-            setDescription('');
-            setDeadline('');
-            setLocation('');
-            setImage('');
+            <Form.Group controlId="formBasicDeadline">
+              <Form.Label className="loginsteps mt-1">
+                <strong>Deadline</strong>
+              </Form.Label>
+              <Form.Control
+                type="date"
+                value={deadline}
+                onChange={(e) => setDeadline(e.target.value)}
+                required
+              />
+            </Form.Group>
 
+            <Form.Group controlId="formBasicLocation">
+              <Form.Label className="loginsteps mt-1">
+                <strong>Location</strong>
+              </Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter location"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+              />
+            </Form.Group>
 
+            <Button variant="primary" type="submit" className="w-100 mt-3">
+              Create
+            </Button>
+          </Form>
 
-            props.refreshActionplans();
-             
-          })
-          .catch((error) => {
-            console.log(error)
-            //const errorDescription = error.response.data.message;
-            //setErrorMessage(errorDescription);
-          })
-            };  
-
-    return(
-        <div className="AddActionplan">
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Title:</label>
-                    <input type="text" name="title" value={title} onChange={(e) => { setTitle(e.target.value) }} required/>
-                </div>
-
-                <div>
-                    <label>Category</label>
-                    <select name="category"  onChange={(e) => { setCategory(e.target.value) }} required>
-                        <option value="DIY">DIY</option>
-                        <option value="Vacation">Vacation</option>
-                        <option value="Event">Event</option>
-                        <option value="Training">Training</option>
-                        <option value="Other">Other</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label>Description:</label>
-                    <input type="textarea" name="description" rows="3" cols="50" value={description}  onChange={(e) => { setDescription(e.target.value) }} />
-                </div>
-
-                <div>
-                    <label>Deadline:</label>
-                    <input type="date" name="deadline" value={deadline} onChange={(e) => { setDeadline(e.target.value) }} required/>
-                </div>
-
-                <div>
-                    <label>Location:</label>
-                    <input type="text" name="location" value={location} onChange={(e) => { setLocation(e.target.value) }} />
-                </div>
-
-                <div>
-                    <label>Image</label>
-                    <input type="text" name="image" value={image} onChange={(e) => { setImage(e.target.value) }} />
-                </div>
-
-                <button type="submit">Create</button>
-                { errorMessage && <p className="error-message">{errorMessage}</p> }
-            </form>
-        </div>
-    );
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
+        </Col>
+      </Row>
+    </Container>
+  );
 }
 
 export default AddActionplan;

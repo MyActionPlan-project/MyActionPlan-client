@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-
-
-
+import { Button, Form, Container, Row, Col } from "react-bootstrap";
 
 function SignupPage(props) {
   const [email, setEmail] = useState("");
@@ -16,7 +14,6 @@ function SignupPage(props) {
 
   const navigate = useNavigate();
 
-  
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
   const handleName = (e) => setName(e.target.value);
@@ -24,7 +21,6 @@ function SignupPage(props) {
   const handleTelephoneNumber = (e) => setTelephoneNumber(e.target.value);
   const handleCity = (e) => setCity(e.target.value);
 
-  
   const handleSignupSubmit = (e) => {
     e.preventDefault();
     // Create an object representing the request body
@@ -33,68 +29,113 @@ function SignupPage(props) {
     // Make an axios request to the API
     // If POST request is successful redirect to login page
     // If the request resolves with an error, set the error message in the state
-    axios.post(`${process.env.REACT_APP_API_URL}/auth/signup`, requestBody)
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/auth/signup`, requestBody)
       .then((response) => {
         navigate("/login");
       })
       .catch((error) => {
         const errorDescription = error.response.data.message;
         setErrorMessage(errorDescription);
-      })
+      });
   };
 
-
   return (
-    <div className="SignupPage">
-      <h1>Sign Up</h1>
+    <Container className="SignupPage">
+      <Row className="justify-content-center">
+        <Col sm={8} md={6} lg={4}>
+          <h1 className="text-center mb-1 mt-1">Register Form</h1>
 
-      <form onSubmit={handleSignupSubmit}>
-          
-          <div>
-            <label>Email: 
-              <input type="email" name="email" value={email} onChange={handleEmail} />
-            </label>
-          </div>
+          <Form onSubmit={handleSignupSubmit}>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label className="loginsteps mt-1">
+                <strong>Email</strong>
+              </Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                value={email}
+                onChange={handleEmail}
+              />
+            </Form.Group>
 
-          <div>
-            <label>Password:
-              <input type="password" name="password" value={password} onChange={handlePassword} />
-            </label>
-          </div>
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label className="loginsteps mt-1">
+                <strong>Password</strong>
+              </Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={handlePassword}
+              />
+            </Form.Group>
 
-          <div>
-            <label>Name:
-              <input type="text" name="name"  value={name} onChange={handleName} />
-            </label>
-          </div>
+            <Form.Group controlId="formBasicName">
+              <Form.Label className="loginsteps mt-1">
+                <strong>Name</strong>
+              </Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter your name"
+                value={name}
+                onChange={handleName}
+              />
+            </Form.Group>
 
-          <div>
-            <label>Age:
-              <input type="number" name="age" value={age} min="1" max="110" onChange={handleAge} />
-            </label>
-          </div>
+            <Form.Group controlId="formBasicAge">
+              <Form.Label className="loginsteps mt-1">
+                <strong>Age</strong>
+              </Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="Enter your age"
+                value={age}
+                min="1"
+                max="110"
+                onChange={handleAge}
+              />
+            </Form.Group>
 
-          <div>
-            <label>TelephoneNumber:
-            <input type="text" name="telephoneNumber" value={telephoneNumber} onChange={handleTelephoneNumber} />
-            </label>
-          </div>
+            <Form.Group controlId="formBasicTelephoneNumber">
+              <Form.Label className="loginsteps mt-1">
+                <strong>Telephone Number</strong>
+              </Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter your telephone number"
+                value={telephoneNumber}
+                onChange={handleTelephoneNumber}
+              />
+            </Form.Group>
 
-          <div>
-            <label>City:
-              <input type="text" name="city" value={city} onChange={handleCity} />
-            </label>
-          </div>
+            <Form.Group controlId="formBasicCity">
+              <Form.Label className="loginsteps mt-1">
+                <strong>City</strong>
+              </Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter your location"
+                value={city}
+                onChange={handleCity}
+              />
+            </Form.Group>
 
-          <button type="submit">Sign Up</button>
-      </form>
+            <Button variant="primary" type="submit" className="w-100 mt-3">
+              Sign Up
+            </Button>
+          </Form>
 
-      { errorMessage && <p className="error-message">{errorMessage}</p> }
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-      <p>Already have account?</p>
-      <Link to={"/login"}> Login</Link>
-    </div>
-  )
+          <p className="text-center mt-3 signup-text">
+            Already have an account?
+            <Link to={"/login"}>Login</Link>
+          </p>
+        </Col>
+      </Row>
+    </Container>
+  );
 }
 
 export default SignupPage;

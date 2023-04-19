@@ -2,9 +2,8 @@ import { useState, useContext } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "./../context/auth.context";
-
-
-
+import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import "./LoginPage.css";
 
 function LoginPage(props) {
   const [email, setEmail] = useState("");
@@ -18,44 +17,70 @@ function LoginPage(props) {
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
 
-  
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     const requestBody = { email, password };
 
-    axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, requestBody)
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/auth/login`, requestBody)
       .then((response) => {
         console.log("JWT token", response.data.authToken);
-        
+
         storeToken(response.data.authToken);
         authenticateUser();
         navigate("/");
       })
       .catch((error) => {
-      	const errorDescription = error.response.data.message;
-      	setErrorMessage(errorDescription);
-    	})
+        const errorDescription = error.response.data.message;
+        setErrorMessage(errorDescription);
+      });
   };
-  
+
   return (
-    <div className="LoginPage">
-      <h1>Login</h1>
+    <Container className="login-container">
+      <Row className="justify-content-center mt-5">
+        <Col sm={8} md={6} lg={4}>
+          <h1 className="text-center mb-4">Login</h1>
+          <Form onSubmit={handleLoginSubmit}>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>
+                <strong>Email address</strong>
+              </Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                value={email}
+                onChange={handleEmail}
+              />
+            </Form.Group>
 
-      <form onSubmit={handleLoginSubmit}>
-        <label>Email:</label>
-        <input type="email" name="email" value={email} onChange={handleEmail} />
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label className="loginsteps mt-4">
+                <strong>Password</strong>
+              </Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={handlePassword}
+              />
+            </Form.Group>
 
-        <label>Password:</label>
-        <input type="password" name="password" value={password} onChange={handlePassword} />
-
-        <button type="submit">Login</button>
-      </form>
-      { errorMessage && <p className="error-message">{errorMessage}</p> }
-
-      <p>Don't have an account yet?</p>
-      <Link to={"/signup"}> Sign Up</Link>
-    </div>
-  )
+            <Button variant="primary" type="submit" className="w-100 mt-3">
+              Login
+            </Button>
+          </Form>
+          {errorMessage && (
+            <p className="text-danger text-center mt-3">{errorMessage}</p>
+          )}
+          <p className="text-center mt-3 signup-text">
+            Don't have an account yet? <Link to={"/signup"}>Sign up</Link> and
+            get started!
+          </p>
+        </Col>
+      </Row>
+    </Container>
+  );
 }
 
 export default LoginPage;

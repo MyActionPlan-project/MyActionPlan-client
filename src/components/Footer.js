@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <Navbar fixed="bottom" bg="#3C6255" className="justify-content-center w-100">
+    <Navbar fixed="bottom" bg="#3C6255" className="justify-content-center ">
       <div className="footer">
         <p className="footer-text">
           <Link to="https://github.com/SotDok" target="_blank">
@@ -22,10 +22,12 @@ function Footer() {
               alt="GitHub icon"
               className="github-icon"
             />
-             <span className="gitname">8lom</span>
+            <span className="gitname">8lom</span>
           </Link>
         </p>
-        <p className="footer-text">Application created in 2023 by SotDok, 8lom</p>
+        <p className="footer-text">
+          Application created in 2023 by SotDok, 8lom
+        </p>
       </div>
     </Navbar>
   );
