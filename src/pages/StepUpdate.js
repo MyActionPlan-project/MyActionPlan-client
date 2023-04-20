@@ -15,7 +15,7 @@ function StepUpdate(props) {
   const [ location, setLocation ] = useState("");
   const [ status, setStatus ] = useState("");
   
-  const {stepId} = useParams()
+  const {stepId} = useParams();
   const {actionplanId} = useParams();
     //console.log("stepId", stepId)
     //console.log("actionplanId", actionplanId)
@@ -34,7 +34,7 @@ function StepUpdate(props) {
           setStatus(detailsFromDB.data.status)
         })
         .catch((error) => console.log(error));
-    },[stepId]);
+    },[stepId, actionplanId]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
