@@ -94,6 +94,7 @@ function SignupPage(props) {
                 min="1"
                 max="110"
                 onChange={handleAge}
+                required
               />
             </Form.Group>
 
@@ -106,6 +107,7 @@ function SignupPage(props) {
                 placeholder="Enter your telephone number"
                 value={telephoneNumber}
                 onChange={handleTelephoneNumber}
+                required
               />
             </Form.Group>
 
@@ -118,6 +120,7 @@ function SignupPage(props) {
                 placeholder="Enter your location"
                 value={city}
                 onChange={handleCity}
+                required
               />
             </Form.Group>
 
