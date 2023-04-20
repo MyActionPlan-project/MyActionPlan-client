@@ -1,10 +1,6 @@
 .footer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 7vh;
-  z-index: 2;
+
+ 
 }
 
 
@@ -12,8 +8,9 @@
   text-align: center;
   margin: 0;
   padding-top: 10px;
-  font-size: 14px;
+  font-size: 12px;
   color: #fff;
+
 }
 
 .footer-text p{
@@ -32,5 +29,6 @@
 
 .gitname {
   color: #fff;
-  font-size: 16px;
+  font-size: 12px;
+  text-decoration: none;
 }
