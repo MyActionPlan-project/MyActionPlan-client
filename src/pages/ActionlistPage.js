@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import AddActionplan from "../components/AddActionplan";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
-import { Card, Button, Row, Col } from "react-bootstrap";
+import { Container, Card, Button, Row, Col } from "react-bootstrap";
 import "./ActionlistPage.css";
 
 function Actionlist() {
@@ -27,8 +27,9 @@ function Actionlist() {
   }, []);
 
   return (
+    <Container fluid>
     <Row>
-      <Col md={5}  >
+      <Col >
         <div>
           <h1 className="d-flex flex-column align-items-center mt-5">Actionplans</h1>
           {actionplans ? (
@@ -37,7 +38,7 @@ function Actionlist() {
               if (isOwner) {
                 return (
                   <Card key={actionplan._id} className="mb-3 actionplan-card">
-                    <Card.Body>
+                    <Card.Body >
                       <div className="d-flex flex-column align-items-center">
                         <div className="mb-3">
                           <Card.Title
@@ -76,6 +77,7 @@ function Actionlist() {
         </div>
       </Col>
     </Row>
+    </Container>
   );
 }
 
