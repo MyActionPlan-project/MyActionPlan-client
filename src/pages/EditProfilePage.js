@@ -141,7 +141,7 @@ function EditProfilePage() {
                   />
                 </Form.Group>
 
-                <Button variant="success" className="mt-3" type="submit">
+                <Button variant="primary" className="mt-3" type="submit">
                   Update Profile
                 </Button>
               </Form>

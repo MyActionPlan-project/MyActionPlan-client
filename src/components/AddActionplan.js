@@ -74,7 +74,7 @@ function AddActionplan(props){
     <Container className="AddActionplan">
       <Row className="justify-content-center">
         <Col sm={8} md={6} lg={4}>
-          <h1 className="text-center mb-1 mt-1">Add your actionplan here:</h1>
+          <h1 className="text-center mb-1 mt-5">Add your actionplan here:</h1>
 
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formBasicTitle">

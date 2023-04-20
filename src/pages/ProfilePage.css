@@ -9,13 +9,10 @@ p{
 }
 
 .editbtn  {
-  background-color: #3C6255 !important;
   font-size: 24px !important;
 }
 
-.editbtn:hover {
-  background-color: #204136 !important;
-}
+
 
 .profile-text-card{
   font-size: 16px;

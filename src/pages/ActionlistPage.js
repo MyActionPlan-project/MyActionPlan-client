@@ -30,7 +30,7 @@ function Actionlist() {
     <Row>
       <Col md={5}  >
         <div>
-          <h1 className="d-flex flex-column align-items-center">Actionplans</h1>
+          <h1 className="d-flex flex-column align-items-center mt-5">Actionplans</h1>
           {actionplans ? (
             actionplans.map((actionplan) => {
               const isOwner = actionplan.userId === user._id;

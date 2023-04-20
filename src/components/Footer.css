@@ -7,12 +7,17 @@
   z-index: 2;
 }
 
+
 .footer-text {
   text-align: center;
   margin: 0;
   padding-top: 10px;
   font-size: 14px;
   color: #fff;
+}
+
+.footer-text p{
+  margin-top: 0;
 }
 
 .github-icon {
