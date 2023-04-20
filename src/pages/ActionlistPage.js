@@ -28,7 +28,7 @@ function Actionlist() {
 
   return (
     <Row>
-      <Col md={6}>
+      <Col md={5}  >
         <div>
           <h1 className="d-flex flex-column align-items-center">Actionplans</h1>
           {actionplans ? (
@@ -68,7 +68,7 @@ function Actionlist() {
           )}
         </div>
       </Col>
-      <Col md={6}>
+      <Col md={7}>
         <div>
           <AddActionplan refreshActionplans={getAllActionplans} />
         </div>

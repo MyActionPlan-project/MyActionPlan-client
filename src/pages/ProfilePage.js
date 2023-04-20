@@ -46,8 +46,8 @@ function ProfilePage() {
           <Col md={6}>
             <Card>
               <Card.Body>
-                <Card.Title className="text-center">Your Profile</Card.Title>
-                <Card.Text className='profile-text-card m-5'>
+                <Card.Title className="text-center card-title">Your Profile</Card.Title>
+                <Card.Text className='profile-text-card '>
                   <p><strong>Name:</strong> {userData.name}</p>
                   <p><strong>Email:</strong> {userData.email}</p>
                   <p><strong>Age:</strong> {userData.age}</p>

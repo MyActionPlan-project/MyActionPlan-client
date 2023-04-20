@@ -85,6 +85,7 @@ function AddActionplan(props) {
               </Form.Label>
               <Form.Control
                 as="select"
+                name="category"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
                 required
@@ -107,6 +108,7 @@ function AddActionplan(props) {
               <Form.Control
                 as="textarea"
                 rows={3}
+                name="description"
                 placeholder="Enter description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
@@ -119,6 +121,7 @@ function AddActionplan(props) {
               </Form.Label>
               <Form.Control
                 type="date"
+                name="deadline"
                 value={deadline}
                 onChange={(e) => setDeadline(e.target.value)}
                 required
@@ -131,6 +134,7 @@ function AddActionplan(props) {
               </Form.Label>
               <Form.Control
                 type="text"
+                name="location"
                 placeholder="Enter location"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
