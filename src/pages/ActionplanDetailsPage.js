@@ -84,7 +84,23 @@ function ActionplanDetails() {
                               <strong>Location:</strong> {step.location} <br />
                             </>
                           )}
-                          <strong>Status:</strong> {step.status} <br />
+                        
+                          <strong>Status:</strong> 
+                          {step.status === "Completed" ? ( 
+                            <p className="green text-center">
+                              { step.status}
+                            </p>
+                          ) : step.status === "Pending" ? ( 
+                            <p className="orange text-center">
+                              { step.status}
+                            </p>
+                          ) : step.status === "Unfinished" && ( 
+                            <p className="red text-center">
+                              { step.status}
+                            </p>
+                            )}
+                        
+                          
                           <div style={{ textAlign: "center" }}>
                             <Link
                               to={`/actionplans/${actionplanId}/${step._id}`}

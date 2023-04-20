@@ -24,11 +24,24 @@ h1{
   line-height: 1.7;
 }
 
-.items {
-  border: 1px solid black;
-}
+
 
 
 button {
   text-align: center;
+}
+
+.green{
+  padding: 10px;
+  background-color: greenyellow;
+}
+
+.orange{
+  padding:10px;
+  background-color: orange;
+}
+
+.red{
+  padding:10px;
+  background-color: red;
 }
