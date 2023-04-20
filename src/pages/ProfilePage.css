@@ -1,14 +1,20 @@
+.card-title{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+}
+
+p{
+  font-size: 18px;
+  line-height: 2;
+}
+
 .editbtn  {
-  background-color: #3C6255 !important;
   font-size: 24px !important;
 }
 
-.editbtn:hover {
-  background-color: #204136 !important;
-}
+
 
 .profile-text-card{
-  font-size: 18px;
+  font-size: 16px;
   font-family:Arial, Helvetica, sans-serif;
-
 }

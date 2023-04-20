@@ -74,7 +74,7 @@ function AddActionplan(props){
     <Container className="AddActionplan">
       <Row className="justify-content-center">
         <Col sm={8} md={6} lg={4}>
-          <h1 className="text-center mb-1 mt-1">Add your actionplan here:</h1>
+          <h1 className="text-center mb-1 mt-5">Add your actionplan here:</h1>
 
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formBasicTitle">
@@ -96,6 +96,7 @@ function AddActionplan(props){
               </Form.Label>
               <Form.Control
                 as="select"
+                name="category"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
                 required
@@ -118,6 +119,7 @@ function AddActionplan(props){
               <Form.Control
                 as="textarea"
                 rows={3}
+                name="description"
                 placeholder="Enter description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
@@ -130,22 +132,21 @@ function AddActionplan(props){
               </Form.Label>
               <Form.Control
                 type="date"
+                name="deadline"
                 value={deadline}
                 onChange={(e) => setDeadline(e.target.value)}
                 required
               />
             </Form.Group>
 
-                <div>
-                    <label>Location:</label>
-                    <input type="text" name="location" value={location} onChange={(e) => { setLocation(e.target.value) }} />
-                </div>
+            
             <Form.Group controlId="formBasicLocation">
               <Form.Label className="loginsteps mt-1">
                 <strong>Location</strong>
               </Form.Label>
               <Form.Control
                 type="text"
+                name="location"
                 placeholder="Enter location"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
