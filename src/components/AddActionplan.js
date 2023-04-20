@@ -103,7 +103,8 @@ function AddActionplan(props){
                 
               >
                 <option value="" defaultValue>
-                  Select Category
+                {" "}
+                  Select Category{" "} 
                 </option>
                 <option value="DIY" >DIY</option>
                 <option value="Vacation">Vacation</option>
