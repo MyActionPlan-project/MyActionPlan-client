@@ -125,15 +125,16 @@ function AddStep(props) {
                 name="status"
                 value={status}
                 onChange={(e) => setStatus(e.target.value)}
+                
                 required
               >
-                <option value="" selected disabled>
+                <option value="" defaultValue >
                   {" "}
                   Select Category{" "}
                 </option>
                 <option value="Completed">Completed</option>
                 <option value="Pending">Pending</option>
-                <option value="Unfinished">Unfinished</option>
+                <option value="Unfinished" defaultValue>Unfinished</option>
               </Form.Control>
             </Form.Group>
 

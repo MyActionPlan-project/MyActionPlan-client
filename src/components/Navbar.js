@@ -26,14 +26,15 @@ function Navbar() {
   return (
     <Nav className="custom-navbar" justify variant="tabs" defaultActiveKey="/">
       <Nav.Item>
-        <Nav.Link as={NavLink} to="/" exact>
+        <Nav.Link as={NavLink} to="/">
+
           Home
         </Nav.Link>
       </Nav.Item>
 
       {isLoggedIn && user && (
         <Nav.Item>
-          <Nav.Link as={NavLink} to={`/profile/${user._id}`} exact>
+          <Nav.Link as={NavLink} to={`/profile/${user._id}`} >
             Hello {user.name.toUpperCase()}
           </Nav.Link>
         </Nav.Item>
@@ -42,7 +43,7 @@ function Navbar() {
       {isLoggedIn && (
         <>
           <Nav.Item>
-            <Nav.Link as={NavLink} to="/actionplans" exact>
+            <Nav.Link as={NavLink} to="/actionplans">
               Actionplans
             </Nav.Link>
           </Nav.Item>
@@ -71,13 +72,13 @@ function Navbar() {
       {!isLoggedIn && (
         <>
           <Nav.Item>
-            <Nav.Link as={NavLink} to="/signup" exact>
+            <Nav.Link as={NavLink} to="/signup" >
               Sign up
             </Nav.Link>
           </Nav.Item>
 
           <Nav.Item>
-            <Nav.Link as={NavLink} to="/login" exact>
+            <Nav.Link as={NavLink} to="/login" >
               Login
             </Nav.Link>
           </Nav.Item>
