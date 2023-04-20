@@ -10,7 +10,7 @@ function EditActionPlan(){
   const [description, setDescription] = useState('');
   const [deadline, setDeadline] = useState('');
   const [location, setLocation] = useState('');
-  const [image, setImage] = useState('');
+  
   
 
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ function EditActionPlan(){
     setDescription(oneActionplan.description);
     setDeadline(oneActionplan.deadline);
     setLocation(oneActionplan.location);
-    setImage(oneActionplan.image);
+   
    })
    .catch((error) => console.log(error));
   }, [actionplanId]);
@@ -51,7 +51,7 @@ const handleFormSubmit = (e) => {
     formattedDeadline = null; 
   }
 
-  const requestBody = { title, category, description, deadline: formattedDeadline, location, image }
+  const requestBody = { title, category, description, deadline: formattedDeadline, location }
 
   const storedToken = localStorage.getItem('authToken');  
 
@@ -116,10 +116,7 @@ const handleFormSubmit = (e) => {
                     <input type="text" name="location" value={location} onChange={(e) => { setLocation(e.target.value) }} />
                 </div>
 
-                <div>
-                    <label>Image</label>
-                    <input type="text" name="image" value={image} onChange={(e) => { setImage(e.target.value) }} />
-                </div>
+               
 
       <button type="Submit">Update Actionplan</button>
       </form>

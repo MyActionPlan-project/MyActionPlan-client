@@ -2,62 +2,73 @@ import axios from "axios";
 import { useState } from "react";
 import { Form, Button, Container, Col, Row } from "react-bootstrap";
 
-function AddActionplan(props) {
-  const storedToken = localStorage.getItem("authToken");
-  const [errorMessage, setErrorMessage] = useState(undefined);
 
-  const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("DIY");
-  const [description, setDescription] = useState("");
-  const [deadline, setDeadline] = useState("");
-  const [location, setLocation] = useState("");
-  const [image, setImage] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
 
-    let formattedDeadline;
+function AddActionplan(props){
 
-    if (deadline) {
-      formattedDeadline = new Date(deadline).toISOString();
-    } else {
-      formattedDeadline = null;
-    }
+  const storedToken = localStorage.getItem("authToken"); 
+  const [errorMessage, setErrorMessage] = useState(undefined)
 
-    const actionplanBody = {
-      title,
-      category,
-      description,
-      deadline: formattedDeadline,
-      location,
-      image,
-    };
 
-    axios
-      .post(
-        `${process.env.REACT_APP_API_URL}/api/actionplans`,
-        actionplanBody,
-        { headers: { Authorization: `Bearer ${storedToken}` } }
-      )
-      .then((response) => {
-        if (response.data.name === "ValidationError") {
-        }
+    const [title, setTitle] = useState('');
+    const [category, setCategory] = useState('DIY');
+    const [description, setDescription] = useState('');
+    const [deadline, setDeadline] = useState('');
+    const [location, setLocation] = useState('');
+   
+    
 
-        setTitle("");
-        setCategory("");
-        setDescription("");
-        setDeadline("");
-        setLocation("");
-        setImage("");
+    
 
-        props.refreshActionplans();
-      })
-      .catch((error) => {
-        console.log(error);
-        //const errorDescription = error.response.data.message;
-        //setErrorMessage(errorDescription);
-      });
-  };
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        
+        let formattedDeadline
+
+        if (deadline) {
+            formattedDeadline = new Date(deadline).toISOString();
+          } else {
+            formattedDeadline = null; 
+          }
+
+        const actionplanBody = {
+            title,
+            category,
+            description,
+            deadline: formattedDeadline,
+            location,
+      
+            
+        };
+
+        
+
+        axios.post(`${process.env.REACT_APP_API_URL}/api/actionplans`, actionplanBody, { headers: { Authorization: `Bearer ${storedToken}`}  })
+          .then((response ) => {
+            if (response.data.name === "ValidationError"){
+               
+            }
+
+                
+            setTitle('');
+            setCategory('');
+            setDescription('');
+            setDeadline('');
+            setLocation('');
+         
+
+
+
+            props.refreshActionplans();
+             
+          })
+          .catch((error) => {
+            console.log(error)
+            //const errorDescription = error.response.data.message;
+            //setErrorMessage(errorDescription);
+          })
+            };  
 
   return (
     <Container className="AddActionplan">
@@ -128,6 +139,7 @@ function AddActionplan(props) {
               />
             </Form.Group>
 
+            
             <Form.Group controlId="formBasicLocation">
               <Form.Label className="loginsteps mt-1">
                 <strong>Location</strong>
