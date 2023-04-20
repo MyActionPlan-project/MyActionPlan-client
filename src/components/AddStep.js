@@ -71,6 +71,7 @@ function AddStep(props) {
                 name="action"
                 value={action}
                 onChange={(e) => setAction(e.target.value)}
+                required
               />
             </Form.Group>
 
@@ -85,6 +86,7 @@ function AddStep(props) {
                 name="comment"
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
+                required
               />
             </Form.Group>
 
@@ -123,6 +125,7 @@ function AddStep(props) {
                 name="status"
                 value={status}
                 onChange={(e) => setStatus(e.target.value)}
+                required
               >
                 <option value="" selected disabled>
                   {" "}

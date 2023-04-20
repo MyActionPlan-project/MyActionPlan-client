@@ -61,6 +61,8 @@ function Actionlist() {
                     </Card.Body>
                   </Card>
                 );
+              } else {
+                return null;
               }
             })
           ) : (

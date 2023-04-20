@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-
+import { Row, Col, Card, Form, Button } from "react-bootstrap";
 
 
 
 function StepUpdate(props) {
 
-  const storedToken = localStorage.getItem('authToken')
+  
 
   const [ action, setAction ] = useState("");
   const [ comment, setComment ] = useState("");
@@ -63,48 +63,97 @@ function StepUpdate(props) {
   }; 
 
   return (
-    <div className="stepUpdate">
-      <h3>Edit steps</h3>
-      
-      <form onSubmit={handleSubmit}>
-
-        <div>
-          <label>Action:</label>
-            <input type="text" name="action" value={action} onChange={(e) => setAction(e.target.value)} />
-        </div>
-
-        <div>
-          <label>Comments:</label>
-            <input type="textarea" name="comment" value={comment} onChange={(e) => setComment(e.target.value)} />
-        </div>
-
-        <div>
-          <label>Deadline:</label>
-            <input type="date" name="deadline" value={deadline} onChange={(e) => setDeadline(e.target.value)} required/>
-        </div>
-
-        <div>
-          <label>Location:</label>
-            <input type="text" name="location" value={location} onChange={(e) => setLocation(e.target.value)} />
-        </div>
-
-         <div>
-            <label>Status:</label>
-              <select name="status" value={status} onChange={(e) => setStatus(e.target.value)}>
-                <option value="Completed">Completed</option>
-                <option value="Pending">Pending</option>
-                <option value="Unfinished">Unfinished</option>
-              </select>
-           </div>
-
-
-        
-        <button type="Submit">edit</button>
-        
-      </form>
-      <button onClick={deleteStep}>Delete this step</button>
+    <div className="Edit-profile-page">
+      <Row>
+        <Col xs={12} md={8} lg={6} className="mx-auto">
+          <Card className="my-4">
+            <Card.Body>
+              <h2 className="text-center mb-4">Edit steps</h2>
+              <Form onSubmit={handleSubmit}>
+                <Form.Group className="mb-3" controlId="formAction">
+                  <Form.Label className="mb-0">
+                    <strong>Action:</strong>
+                  </Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="action"
+                    value={action}
+                    onChange={(e) => setAction(e.target.value)}
+                  />
+                </Form.Group>
+  
+                <Form.Group className="mb-3" controlId="formComment">
+                  <Form.Label className="mb-0">
+                    <strong>Comments:</strong>
+                  </Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    name="comment"
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                  />
+                </Form.Group>
+  
+                <Form.Group className="mb-3" controlId="formDeadline">
+                  <Form.Label className="mb-0">
+                    <strong>Deadline:</strong>
+                  </Form.Label>
+                  <Form.Control
+                    type="date"
+                    name="deadline"
+                    value={deadline}
+                    onChange={(e) => setDeadline(e.target.value)}
+                    required
+                  />
+                </Form.Group>
+  
+                <Form.Group className="mb-3" controlId="formLocation">
+                  <Form.Label className="mb-0">
+                    <strong>Location:</strong>
+                  </Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="location"
+                    value={location}
+                    onChange={(e) => setLocation(e.target.value)}
+                  />
+                </Form.Group>
+  
+                <Form.Group className="mb-3" controlId="formStatus">
+                  <Form.Label className="mb-0">
+                    <strong>Status:</strong>
+                  </Form.Label>
+                  <Form.Control
+                    as="select"
+                    name="status"
+                    value={status}
+                    onChange={(e) => setStatus(e.target.value)}
+                  >
+                    <option value="Completed">Completed</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Unfinished">Unfinished</option>
+                  </Form.Control>
+                </Form.Group>
+  
+                <Button variant="primary" className="mt-3" type="submit">
+                  Update Steps
+                </Button>
+              </Form>
+  
+              <Button
+                variant="danger"
+                className="mt-3"
+                onClick={deleteStep}
+              >
+                Delete Steps
+              </Button>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
     </div>
-  )
+  );
+  
 
 }
 
