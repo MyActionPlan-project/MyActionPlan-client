@@ -100,11 +100,12 @@ function AddActionplan(props){
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
                 required
+                
               >
-                <option value="" selected disabled>
+                <option value="" defaultValue>
                   Select Category
                 </option>
-                <option value="DIY">DIY</option>
+                <option value="DIY" >DIY</option>
                 <option value="Vacation">Vacation</option>
                 <option value="Event">Event</option>
                 <option value="Training">Training</option>
