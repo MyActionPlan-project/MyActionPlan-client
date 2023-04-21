@@ -99,6 +99,6 @@ The app is built with a responsive design, which means it adapts to different sc
 
 That's a detailed version of the functionality of the My actionplan app. With these features, users can create a comprehensive action plan, break it down into smaller steps, and track their progress towards their goal.
 
-That's it! With this README file, users should be able to easily install and run the My Actionplan app on their local machine.
+
 
 
