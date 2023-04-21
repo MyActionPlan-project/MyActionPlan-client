@@ -29,9 +29,13 @@ npm install axios
 npm install react-bootstrap bootstrap
 ```
 
+## BACKEND repository
+
+Repository with the backend can by found here: (https://github.com/MyActionPlan-project/MyActionPlan-server)
+
 ## Running the app
 
-To run in your computer, follow these steps:
+To run in your computer, follow these steps: 
 
 ```sh
 npm run start
