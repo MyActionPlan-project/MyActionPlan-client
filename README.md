@@ -9,7 +9,7 @@ React, Javascript, React Bootstrap, HTML, CSS
 
 ## Build by
 
-This app is build by [Sotiris Ntokas](https://github.com/SotDok) [Pim Blom](https://github.com/8lom). The app is made for project 3 on the Ironhack Bootcamp Web Development.
+This app is build by [Sotiris Ntokas](https://github.com/SotDok), [Pim Blom](https://github.com/8lom). The app is made for project 3 on the Ironhack Bootcamp Web Development.
 
 
 ## Installation
